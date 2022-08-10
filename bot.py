@@ -213,6 +213,10 @@ async def attack(ctx):
     else:
         Values.user_problems[defender_name] = []
 
+    if Values.user_problems[defender_name].__len__() >= 5:
+        await ctx.send(f'{ctx.author.mention}공격 대상이 진행중인 문제가 너무 많습니다.')
+        return
+
     ut1 = Utillity.tier_to_num(Utillity.get_user_tier(defender_name))
     pt1 = Utillity.tier_to_num(Utillity.get_problem_tier(ctx.message.content.split(' ')[2]))
 
