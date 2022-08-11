@@ -374,6 +374,8 @@ async def surrender(ctx):
             Values.user_list[problem['attacker']]['at_score'] += 1
             Values.user_list[ctx.author.display_name]['de_score'] -= 1
             Values.user_problems[ctx.author.display_name].remove(problem)
+            await bot.get_channel(Values.scoreboard_channel_id).purge(limit=1)
+            await bot.get_channel(Values.scoreboard_channel_id).send(embed=Utillity.make_embed())
             return
 
     await ctx.send(f'{ctx.author.mention}삭제 대상이 잘못 됐습니다.')
